@@ -1,5 +1,3 @@
-Web Systems
-
 Welcome to my Web Systems repository! This repository contains my laboratory activities, exercises, and projects completed for the subject Web Systems.
 
 📚 Course Information
