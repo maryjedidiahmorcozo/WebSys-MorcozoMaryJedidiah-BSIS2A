@@ -4,9 +4,13 @@ This repository contains my laboratory activities, exercises, and projects compl
 📚 Student Information
 
 Name: Mary Jedidiah M. Morcozo
+
 Course & Section: Bachelor of Science in Information Systems (BSIS) – 1A
+
 School: Bicol University – Polangui
+
 Academic Year: 2026–2027
+
 Semester: 1st Semester
 
 📌 Project Description
