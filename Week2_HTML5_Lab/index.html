@@ -1,81 +1,628 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Learning HTML5 — My Web Experiments</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Welcome to My Website</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  />
+
 </head>
+
 <body>
 
-  <!-- Header Section -->
-  <header>
-    <h1>My Web Experiments</h1>
-    <nav aria-label="Main navigation">
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#multimedia">Multimedia</a></li>
-      </ul>
-    </nav>
-  </header>
+  <!-- Bootstrap Responsive Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-  <!-- Main Content Section -->
-  <main>
-    <section id="about">
-      <h2>About this Page</h2>
-      <p>
-        Hi I'm a web development student experimenting with HTML5. This page
-        documents small experiments in semantic markup, responsive media, and
-        accessible content. It is written in first person to reflect progress
-        and learning goals.
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#">
+        My Website
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#home">
+              Home
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#about">
+              About
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#multimedia">
+              Multimedia
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#features">
+              Features
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <!-- Header Section -->
+  <header id="home" class="text-center py-5 bg-light">
+
+    <div class="container">
+
+      <h1 class="display-4">
+        Welcome to My Website
+      </h1>
+
+      <p class="lead">
+        Exploring HTML5, multimedia, and modern web design with Bootstrap.
       </p>
 
-      <h3>Current goals</h3>
-      <ul>
-        <li>Understand semantic HTML and when to use each element</li>
-        <li>Make media responsive and accessible</li>
-        <li>Practice creating small, self-contained project pages</li>
-      </ul>
+    </div>
+
+  </header>
+
+
+  <!-- Main Content -->
+  <main>
+
+
+    <!-- About Section -->
+    <section id="about" class="container mt-5">
+
+      <div class="row align-items-center">
+
+        <!-- About Text -->
+        <div class="col-md-6">
+
+          <h2>About this Page</h2>
+
+          <p>
+            Hi! I'm Mary Jedidiah M. Morcozo 
+            a web development student experimenting with HTML5.
+            This page documents small experiments in semantic markup,
+            responsive media, and accessible content. It is written in
+            first person to reflect progress and learning goals.
+          </p>
+
+          <h3>Current Goals</h3>
+
+          <ul>
+
+            <li>
+              Understand semantic HTML and when to use each element
+            </li>
+
+            <li>
+              Make media responsive and accessible
+            </li>
+
+            <li>
+              Practice creating small, self-contained project pages
+            </li>
+
+          </ul>
+
+          <button class="btn btn-primary">
+            Learn More
+          </button>
+
+        </div>
+
+
+        <!-- About Image -->
+        <div class="col-md-6 text-center">
+
+          <img
+            src="Illustration of a laptop and coffee mug.jpg"
+            class="img-fluid rounded shadow"
+            alt="Illustration of a laptop and coffee mug"
+            width="400"
+            height="225"
+          />
+
+        </div>
+
+      </div>
+
     </section>
+
+
+    <!-- Bootstrap Alert
+         Additional Bootstrap Component -->
+    <section class="container mt-5">
+
+      <div class="alert alert-info" role="alert">
+
+        <strong>Welcome!</strong>
+        This webpage was enhanced using Bootstrap components
+        and responsive utilities.
+
+      </div>
+
+    </section>
+
+
+    <!-- Bootstrap Carousel -->
+    <section class="container mt-5">
+
+      <h2 class="text-center mb-4">
+        Featured Multimedia
+      </h2>
+
+      <div
+        id="heroCarousel"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+
+        <div class="carousel-inner">
+
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+
+            <img
+              src="Illustration of a laptop and coffee mug.jpg"
+              class="d-block w-100"
+              alt="Laptop and coffee mug"
+            />
+
+            <div class="carousel-caption d-none d-md-block">
+
+              <h3>
+                Welcome to My Website
+              </h3>
+
+              <p>
+                Exploring modern web experiences.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+
+            <img
+              src="Illustration of a laptop and coffee mug.jpg"
+              class="d-block w-100"
+              alt="Web development illustration"
+            />
+
+            <div class="carousel-caption d-none d-md-block">
+
+              <h3>
+                Web Development
+              </h3>
+
+              <p>
+                Learning HTML5 and responsive web design.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+
+            <img
+              src="Illustration of a laptop and coffee mug.jpg"
+              class="d-block w-100"
+              alt="HTML5 experiment"
+            />
+
+            <div class="carousel-caption d-none d-md-block">
+
+              <h3>
+                My Web Experiments
+              </h3>
+
+              <p>
+                Practicing new web development skills.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Previous Button -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide="prev"
+        >
+
+          <span class="carousel-control-prev-icon"></span>
+
+          <span class="visually-hidden">
+            Previous
+          </span>
+
+        </button>
+
+
+        <!-- Next Button -->
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#heroCarousel"
+          data-bs-slide="next"
+        >
+
+          <span class="carousel-control-next-icon"></span>
+
+          <span class="visually-hidden">
+            Next
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
 
     <!-- Multimedia Section -->
-    <section id="multimedia">
-      <h2>Multimedia Features</h2>
+    <section id="multimedia" class="container mt-5">
+
+      <h2 class="text-center mb-4">
+        Multimedia Features
+      </h2>
+
 
       <!-- Image Figure -->
-<figure>
-  <img src="Illustration of a laptop and coffee mug.jpg" alt="Illustration of a laptop and coffee mug" width="400" height="225">
-  <figcaption>Figure 1: Illustration of a laptop and coffee mug
-     </figcaption>
-</figure>
+      <div class="text-center mb-5">
+
+        <figure>
+
+          <img
+            src="Illustration of a laptop and coffee mug.jpg"
+            class="img-fluid rounded shadow"
+            alt="Illustration of a laptop and coffee mug"
+            width="400"
+            height="225"
+          />
+
+          <figcaption class="mt-2">
+
+            Figure 1: Illustration of a laptop and coffee mug.
+
+          </figcaption>
+
+        </figure>
+
+      </div>
 
 
-      <!-- NEW: Your Custom Video Figure -->
-      <figure>
-        <video width="640" height="360" controls poster="https://via.placeholder.com/800x450">
-          <source src="Alex Crichton - Merry Christmas, i miss you (Lyrics) - BangersOnly (1080p, h264, youtube).mp4" type="video/mp4">
-          <source src="Alex Crichton - Merry Christmas, i miss you (Lyrics) - BangersOnly (1080p, h264, youtube).webm" type="video/webm">
-          Your browser does not support the HTML5 video tag. You can 
-          <a href="Alex Crichton - Merry Christmas, i miss you (Lyrics) - BangersOnly (1080p, h264, youtube).mp4">download the video instead</a>.
-        </video>
-        <figcaption>Figure 2: My newly added custom video player (My Favorite Song).</figcaption>
-      </figure>
+      <!-- Custom Video -->
+      <div class="row justify-content-center">
 
-      <!-- Old Placeholder Video Figure -->
-      <figure>
-        <video controls width="640" poster="https://via.placeholder.com/800x450">
-          <source src="Panaginip - nicole (Official Music Video) - nicole (1080p, h264, youtube).mp4" type="video/mp4">
-          Your browser does not support the video tag. 
-          <a href="Panaginip - nicole (Official Music Video) - nicole (1080p, h264, youtube).mp4">download the video</a>
-        </video>
-        <figcaption>Figure 3: Also my Favorite Song.</figcaption>
-      </figure>
+        <div class="col-md-8">
+
+          <figure>
+
+            <video
+              class="w-100 rounded shadow"
+              controls
+              poster="https://via.placeholder.com/800x450"
+            >
+
+              <source
+                src="Alex Crichton - Merry Christmas, i miss you (Lyrics) - BangersOnly (1080p, h264, youtube).mp4"
+                type="video/mp4"
+              />
+
+              <source
+                src="Alex Crichton - Merry Christmas, i miss you (Lyrics) - BangersOnly (1080p, h264, youtube).webm"
+                type="video/webm"
+              />
+
+              Your browser does not support the HTML5 video tag.
+
+              <a
+                href="Alex Crichton - Merry Christmas, i miss you (Lyrics) - BangersOnly (1080p, h264, youtube).mp4"
+              >
+                Download the video instead.
+              </a>
+
+            </video>
+
+            <figcaption class="text-center mt-2">
+
+              Figure 2: My newly added custom video player
+              (My Favorite Song).
+
+            </figcaption>
+
+          </figure>
+
+        </div>
+
+      </div>
+
+
+      <!-- Second Video -->
+      <div class="row justify-content-center mt-4">
+
+        <div class="col-md-8">
+
+          <figure>
+
+            <video
+              class="w-100 rounded shadow"
+              controls
+              poster="https://via.placeholder.com/800x450"
+            >
+
+              <source
+                src="Panaginip - nicole (Official Music Video) - nicole (1080p, h264, youtube).mp4"
+                type="video/mp4"
+              />
+
+              Your browser does not support the video tag.
+
+              <a
+                href="Panaginip - nicole (Official Music Video) - nicole (1080p, h264, youtube).mp4"
+              >
+                Download the video.
+              </a>
+
+            </video>
+
+            <figcaption class="text-center mt-2">
+
+              Figure 3: Also my Favorite Song.
+
+            </figcaption>
+
+          </figure>
+
+        </div>
+
+      </div>
+
     </section>
+
+
+    <!-- Bootstrap Grid and Cards -->
+    <section id="features" class="container mt-5">
+
+      <h2 class="text-center mb-4">
+        My Web Development Features
+      </h2>
+
+
+      <div class="row g-4">
+
+
+        <!-- Card 1 -->
+        <div class="col-md-4">
+
+          <div class="card h-100 shadow">
+
+            <div class="card-body text-center">
+
+              <h5 class="card-title">
+                HTML5
+              </h5>
+
+              <p class="card-text">
+                I use semantic HTML5 elements to create
+                organized and accessible webpages.
+              </p>
+
+              <a href="#about" class="btn btn-primary">
+                Learn More
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Card 2 -->
+        <div class="col-md-4">
+
+          <div class="card h-100 shadow">
+
+            <div class="card-body text-center">
+
+              <h5 class="card-title">
+                Responsive Design
+              </h5>
+
+              <p class="card-text">
+                Bootstrap's responsive grid helps my webpage
+                work properly on different screen sizes.
+              </p>
+
+              <a href="#multimedia" class="btn btn-primary">
+                View Media
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Card 3 -->
+        <div class="col-md-4">
+
+          <div class="card h-100 shadow">
+
+            <div class="card-body text-center">
+
+              <h5 class="card-title">
+                Multimedia
+              </h5>
+
+              <p class="card-text">
+                Images and videos make the webpage more
+                interactive and engaging.
+              </p>
+
+              <a href="#multimedia" class="btn btn-primary">
+                Explore
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
 
-  <!-- Footer Section -->
-  <footer>
-    <p>Created by [M.J.M] | © 2025</p>
+
+  <!-- Modern Bootstrap Footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+
+    <div class="container">
+
+      <div class="row">
+
+
+        <!-- About -->
+        <div class="col-md-4">
+
+          <h5>
+            About Me
+          </h5>
+
+          <p>
+            I am a web development student learning HTML5,
+            responsive design, and Bootstrap.
+          </p>
+
+        </div>
+
+
+        <!-- Quick Links -->
+        <div class="col-md-4">
+
+          <h5>
+            Quick Links
+          </h5>
+
+          <ul class="list-unstyled">
+
+            <li>
+              <a href="#home" class="text-white">
+                Home
+              </a>
+            </li>
+
+            <li>
+              <a href="#about" class="text-white">
+                About
+              </a>
+            </li>
+
+            <li>
+              <a href="#multimedia" class="text-white">
+                Multimedia
+              </a>
+            </li>
+
+            <li>
+              <a href="#features" class="text-white">
+                Features
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <!-- Social Media -->
+        <div class="col-md-4 text-center">
+
+          <h5>
+            Follow Me
+          </h5>
+
+          <a href="#" class="text-white me-2">
+            Facebook
+          </a>
+
+          <a href="#" class="text-white me-2">
+            Twitter
+          </a>
+
+          <a href="#" class="text-white">
+            Instagram
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <hr />
+
+      <p class="text-center mb-0">
+        Created by M.J.M | &copy; 2026
+      </p>
+
+    </div>
+
   </footer>
 
+
+  <!-- Bootstrap JavaScript Bundle -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+  </script>
+
 </body>
+
 </html>
