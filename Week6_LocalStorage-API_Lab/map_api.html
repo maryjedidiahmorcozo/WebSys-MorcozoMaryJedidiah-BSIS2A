@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Google Maps API Example</title>
+
+    <script>
+        let map;
+
+        async function initMap() {
+            const { Map } = await google.maps.importLibrary("maps");
+            const { Place } = await google.maps.importLibrary("places");
+
+            map = new Map(document.getElementById("map"), {
+                zoom: 5,
+                center: { lat: 14.5995, lng: 120.9842 }
+            });
+
+            window.Place = Place;
+        }
+
+        async function searchLocation() {
+            const location = document.getElementById("locationInput").value;
+
+            if (location.trim() === "") {
+                return;
+            }
+
+            const { Place } = await google.maps.importLibrary("places");
+
+            const request = {
+                textQuery: location,
+                fields: ["displayName", "location"],
+                maxResultCount: 1
+            };
+
+            const { places } = await Place.searchByText(request);
+
+            if (places && places.length > 0) {
+                map.setCenter(places[0].location);
+                map.setZoom(12);
+            } else {
+                alert("Location not found!");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2>Google Maps Integration</h2>
+
+    <input
+        type="text"
+        id="locationInput"
+        placeholder="Enter a city or address"
+    >
+
+    <button onclick="searchLocation()">Search</button>
+
+    <div id="map" style="height:400px; width:100%;"></div>
+
+    <script
+        async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1GAlyvoF0g2ktj-S9-m0-MZ_Ut7whm3E&callback=initMap">
+    </script>
+</body>
+</html>
