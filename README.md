@@ -2,23 +2,16 @@ Welcome to my Web Systems Portfolio! 👋
 This repository contains my laboratory activities, exercises, and projects completed for the subject Web Systems and Technologies.
 
 📚 Student Information
-
 Name: Mary Jedidiah M. Morcozo
-
-Course & Section: Bachelor of Science in Information Systems (BSIS) – 1A
-
+Course & Section: Bachelor of Science in Information Systems (BSIS) – 2A
 School: Bicol University – Polangui
-
 Academic Year: 2026–2027
-
 Semester: 1st Semester
 
 📌 Project Description
-
 This repository contains my laboratory activities from Week 1 to Week 7 for Web Systems and Technologies.
 
 The project demonstrates my understanding and practical application of:
-
 * HTML5 structure and semantics
 * CSS styling and layout
 * JavaScript fundamentals
@@ -62,10 +55,9 @@ Week 7 – MiniFullStackStarter
 Focused on creating a starter full-stack web application that demonstrates the connection between frontend and backend technologies.
 
 🔗 Live Render Link:
-Insert deployed system URL here.
+Insert URL here.
 
 🛠️ Tools & Technologies Used
-
 * HTML5
 * CSS3
 * JavaScript
@@ -81,9 +73,8 @@ Insert deployed system URL here.
 The purpose of this repository is to document my progress and practical activities in Web Systems and Technologies. It serves as a collection of my laboratory outputs and demonstrates my understanding of basic to intermediate web development concepts.
 
 👩‍💻 Author
-
 Mary Jedidiah M. Morcozo
-BS Information Systems Student
+BS Information System Student
 Bicol University – Polangui
 
 ⭐ This repository was created for academic purposes as part of my Web Systems and Technologies course.
