@@ -78,6 +78,7 @@ Insert URL here.
 The purpose of this repository is to document my progress and practical activities in Web Systems and Technologies. It serves as a collection of my laboratory outputs and demonstrates my understanding of basic to intermediate web development concepts.
 
 👩‍💻 Author
+
 Mary Jedidiah M. Morcozo
 BS Information System Student
 Bicol University – Polangui
