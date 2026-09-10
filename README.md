@@ -80,7 +80,9 @@ The purpose of this repository is to document my progress and practical activiti
 👩‍💻 Author
 
 Mary Jedidiah M. Morcozo
+
 BS Information System Student
+
 Bicol University – Polangui
 
 ⭐ This repository was created for academic purposes as part of my Web Systems and Technologies course.
