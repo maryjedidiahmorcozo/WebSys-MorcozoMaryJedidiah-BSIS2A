@@ -3,106 +3,1014 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Laboratory Features Overview</title>
-  <!-- Bootstrap CSS -->
+  <title>Laboratory Features Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --pink: #e91e63;
+      --pink-dark: #b70d4d;
+      --pink-soft: #ffe7f1;
+      --pink-hot: #ff5ca9;
+      --pink-deep: #63213e;
+      --cream: #fffafc;
+      --text: #502d46;
+      --muted: #785b72;
+      --shadow: rgba(185, 49, 105, 0.22);
+      --border: rgba(233, 30, 99, 0.16);
+      --sidebar: #fff4f8;
+      --panel: #ffffff;
+      --gray-text: #876c7d;
+      --font: "Poppins", "Inter", "Segoe UI", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% 8%, rgba(255, 197, 220, 0.8), transparent 16%),
+        radial-gradient(circle at 25% 80%, rgba(255, 126, 180, 0.3), transparent 17%),
+        linear-gradient(135deg, #fff0f8 0%, #ffdce9 100%);
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255, 222, 238, 0.8);
+      filter: blur(20px);
+      left: -70px;
+      top: -40px;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: rgba(255, 180, 218, 0.45);
+      filter: blur(16px);
+      right: -80px;
+      bottom: -90px;
+      pointer-events: none;
+    }
+
+    .app-wrap {
+      min-height: 100vh;
+      display: flex;
+      gap: 24px;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sidebar {
+      width: 280px;
+      background: rgba(255, 244, 248, 0.96);
+      border-radius: 30px;
+      box-shadow: 0 18px 40px var(--shadow);
+      border: 1px solid var(--border);
+      padding: 30px 22px;
+      position: sticky;
+      top: 24px;
+      height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-dark), var(--pink-hot));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 10px 24px var(--shadow);
+    }
+
+    .brand-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--pink-dark);
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+
+    .brand-subtitle {
+      font-size: 0.78rem;
+      color: var(--gray-text);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .profile-card {
+      margin: 26px 0 20px;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: white;
+      border-radius: 24px;
+      padding: 22px 16px;
+      box-shadow: 0 12px 30px var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .profile-avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.22);
+      border: 2px solid rgba(255,255,255,0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+
+    .profile-name {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .profile-role {
+      font-size: 0.74rem;
+      opacity: 0.9;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.92rem;
+      padding: 12px 14px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.25s ease all;
+      border: 1px solid transparent;
+    }
+
+    .nav-link:hover {
+      color: var(--pink-dark);
+      background: var(--pink-soft);
+      transform: translateX(4px);
+      border-color: var(--border);
+      text-decoration: none;
+    }
+
+    .nav-link.active {
+      color: var(--pink-dark);
+      background: var(--pink-soft);
+      border-color: var(--pink-hot);
+      box-shadow: 0 6px 14px var(--shadow);
+    }
+
+    .nav-link i {
+      font-size: 1.1rem;
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--border);
+      padding-top: 22px;
+      color: var(--gray-text);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+      background: rgba(255, 250, 252, 0.78);
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.7);
+      box-shadow: 0 18px 40px var(--shadow);
+      padding: 26px;
+      overflow: hidden;
+    }
+
+    .dashboard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dashboard-top h1 {
+      color: var(--pink-dark);
+      font-size: clamp(2rem, 2.9vw, 2.8rem);
+      font-weight: 900;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.03em;
+    }
+
+    .dashboard-top p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .top-btn {
+      border-radius: 50px;
+      padding: 10px 18px;
+      border: 1px solid var(--pink-hot);
+      background: var(--pink-soft);
+      color: var(--pink-dark);
+      font-weight: 800;
+      font-size: 0.84rem;
+      transition: 0.25s ease transform;
+    }
+
+    .top-btn:hover {
+      transform: translateY(-3px);
+      background: var(--pink);
+      color: white;
+      box-shadow: 0 10px 20px var(--shadow);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(150px, 1fr));
+      gap: 14px;
+      margin: 20px 0;
+    }
+
+    .stat-card {
+      background: var(--panel);
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      box-shadow: 0 6px 16px rgba(185, 49, 105, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.25s ease all;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 20px var(--shadow);
+    }
+
+    .stat-card .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      color: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .stat-card .label {
+      font-size: 0.74rem;
+      color: var(--gray-text);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-card .value {
+      font-size: 1.3rem;
+      color: var(--pink-dark);
+      font-weight: 900;
+      margin-top: 4px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .feature-card {
+      background: var(--panel);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 24px var(--shadow);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      transition: 0.3s ease all;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--pink-hot));
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 38px var(--shadow);
+      border-color: var(--pink-hot);
+    }
+
+    .feature-card.wide {
+      grid-column: span 2;
+    }
+
+    .feature-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--pink-dark);
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .feature-title i {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--pink-soft);
+      color: var(--pink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .feature-tag {
+      background: var(--pink-soft);
+      border: 1px solid var(--border);
+      color: var(--pink-dark);
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 7px 12px;
+      white-space: nowrap;
+    }
+
+    .feature-card-body {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    label {
+      font-weight: 800;
+      color: var(--pink-deep);
+      font-size: 0.83rem;
+      letter-spacing: 0.04em;
+      width: 120px;
+    }
+
+    input,
+    select {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 11px 14px;
+      min-height: 45px;
+      outline: none;
+      transition: 0.22s ease all;
+      width: 100%;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--pink-hot);
+      box-shadow: 0 0 0 4px rgba(255, 92, 169, 0.14);
+    }
+
+    .input-control {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .btn-pink {
+      background: linear-gradient(135deg, var(--pink), var(--pink-hot));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 11px 20px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      box-shadow: 0 10px 22px var(--shadow);
+      transition: 0.2s ease transform, 0.2s ease box-shadow;
+      cursor: pointer;
+    }
+
+    .btn-pink:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 26px var(--shadow);
+      color: white;
+    }
+
+    .btn-soft {
+      background: var(--pink-soft);
+      color: var(--pink-dark);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 11px 20px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      transition: 0.22s ease all;
+      cursor: pointer;
+    }
+
+    .btn-soft:hover {
+      color: white;
+      background: var(--pink);
+    }
+
+    .results {
+      margin-top: 14px;
+      background: var(--pink-soft);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+      min-height: 50px;
+    }
+
+    .weather-result,
+    .github-result {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: none;
+      margin-top: 16px;
+    }
+
+    #weatherResult {
+      min-height: 80px;
+    }
+
+    #userResult {
+      min-height: 80px;
+    }
+
+    #map {
+      width: 100%;
+      height: 270px;
+      border-radius: 16px;
+      border: 2px solid var(--border);
+      margin-top: 16px;
+      background: var(--pink-soft);
+      overflow: hidden;
+    }
+
+    .dash-footer {
+      padding-top: 14px;
+      color: var(--gray-text);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    body.dark-mode {
+      background: linear-gradient(135deg, #251326 0%, #4f1534 100%);
+      color: white;
+    }
+
+    body.dark-mode .main {
+      background: rgba(49, 41, 58, 0.92);
+    }
+
+    body.dark-mode .feature-card,
+    body.dark-mode .stat-card,
+    body.dark-mode .sidebar {
+      background: #2e1c30;
+      color: white;
+      border-color: var(--pink-hot);
+    }
+
+    body.dark-mode .feature-card-body,
+    body.dark-mode .dash-footer,
+    body.dark-mode .dashboard-top p,
+    body.dark-mode .feature-card .feature-card-body,
+    body.dark-mode input,
+    body.dark-mode select,
+    body.dark-mode .results,
+    body.dark-mode .feature-card {
+      color: #ffdce9;
+    }
+
+    body.dark-mode input,
+    body.dark-mode select {
+      background: #26192a;
+      color: white;
+      border-color: var(--pink-hot);
+    }
+
+    @media (max-width: 1100px) {
+      .app-wrap {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+        height: auto;
+        position: relative;
+      }
+
+      .stats-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card.wide {
+        grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app-wrap {
+        padding: 12px;
+      }
+
+      .dashboard-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="bg-primary text-white p-4 mb-4 text-center">
-    <h1 class="display-4">Laboratory Feature Showcase</h1>
-    <p class="lead">Navigate through all the features created in this lab</p>
-  </header>
-
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-    <div class="container">
-      <a class="navbar-brand" href="#">Lab Features</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarFeatures" aria-controls="navbarFeatures" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarFeatures">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="local_storage.html">Local Storage</a></li>
-          <li class="nav-item"><a class="nav-link" href="user_preferences.html">User Preferences</a></li>
-          <li class="nav-item"><a class="nav-link" href="weather_api.html">Weather API</a></li>
-          <li class="nav-item"><a class="nav-link" href="map_api.html">Google Maps</a></li>
-          <li class="nav-item"><a class="nav-link" href="github_api.html">GitHub API</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Main Content: Feature Cards -->
-  <main class="container mb-5">
-    <div class="row g-4">
-      
-      <!-- Local Storage -->
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <h5 class="card-title">Local Storage</h5>
-            <p class="card-text">Store and retrieve user preferences with Local Storage API.</p>
-            <a href="local_storage.html" class="btn btn-primary mt-3">Go to Activity</a>
+  <div class="app-wrap">
+    <aside class="sidebar">
+      <section>
+        <div class="brand">
+          <div class="brand-icon">
+            <span aria-hidden="true">✦</span>
+          </div>
+          <div>
+            <h2 class="brand-title">Lab Pink</h2>
+            <div class="brand-subtitle">Web Systems</div>
           </div>
         </div>
-      </div>
 
-      <!-- User Preferences -->
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <h5 class="card-title">User Preferences</h5>
-            <p class="card-text">Save theme and language preferences with Local Storage.</p>
-            <a href="user_preferences.html" class="btn btn-primary mt-3">Go to Activity</a>
+        <section class="profile-card">
+          <div class="profile-avatar">MJ</div>
+          <div>
+            <div class="profile-name">Mary Jedidiah</div>
+            <div class="profile-role">Feature Console</div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <!-- Weather API -->
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <h5 class="card-title">Weather API</h5>
-            <p class="card-text">Fetch real-time weather data using OpenWeatherMap API.</p>
-            <a href="weather_api.html" class="btn btn-primary mt-3">Go to Activity</a>
+        <nav class="sidebar-nav">
+          <a class="nav-link active" href="#preferences"><i>✎</i> User Preferences</a>
+          <a class="nav-link" href="#storage"><i>▣</i> Local Storage</a>
+          <a class="nav-link" href="#weather"><i>☀</i> Weather</a>
+          <a class="nav-link" href="#maps"><i>⌕</i> Maps</a>
+          <a class="nav-link" href="#github"><i>☏</i> GitHub</a>
+        </nav>
+      </section>
+
+      <div class="sidebar-footer">
+        <span>&copy; 2026 M.J.M</span>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="dashboard-top">
+        <div>
+          <h1>Laboratory Dashboard</h1>
+          <p>Navigate through all the features created in this lab</p>
+        </div>
+        <div class="top-actions">
+          <button class="top-btn" id="toggleTheme">Dark Theme</button>
+          <button class="top-btn">Sync</button>
+        </div>
+      </section>
+
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="icon">☼</div>
+          <div>
+            <div class="label">Theme</div>
+            <div class="value" id="themeStat">Light</div>
           </div>
-        </div>
-      </div>
-
-      <!-- Google Maps -->
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <h5 class="card-title">Google Maps</h5>
-            <p class="card-text">Display maps and search locations with Google Maps API.</p>
-            <a href="map_api.html" class="btn btn-primary mt-3">Go to Activity</a>
+        </article>
+        <article class="stat-card">
+          <div class="icon">▣</div>
+          <div>
+            <div class="label">Storage</div>
+            <div class="value">Live</div>
           </div>
-        </div>
-      </div>
-
-      <!-- GitHub API -->
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-          <div class="card-body d-flex flex-column justify-content-between">
-            <h5 class="card-title">GitHub API</h5>
-            <p class="card-text">Fetch GitHub user info using GitHub's API.</p>
-            <a href="github_api.html" class="btn btn-primary mt-3">Go to Activity</a>
+        </article>
+        <article class="stat-card">
+          <div class="icon">☀</div>
+          <div>
+            <div class="label">Weather</div>
+            <div class="value">API</div>
           </div>
-        </div>
-      </div>
+        </article>
+        <article class="stat-card">
+          <div class="icon">⌕</div>
+          <div>
+            <div class="label">Maps</div>
+            <div class="value">API</div>
+          </div>
+        </article>
+        <article class="stat-card">
+          <div class="icon">☏</div>
+          <div>
+            <div class="label">GitHub</div>
+            <div class="value">API</div>
+          </div>
+        </article>
+      </section>
 
-    </div>
-  </main>
+      <section class="feature-grid">
+        <article class="feature-card" id="preferences">
+          <div class="feature-card-header">
+            <div class="feature-title"><i>✎</i><span>User Preferences</span></div>
+            <span class="feature-tag">Preferences</span>
+          </div>
+          <div class="feature-card-body">
+            <div class="form-group">
+              <label for="theme">Theme:</label>
+              <select id="theme" class="input-control">
+                <option value="light">Light Mode</option>
+                <option value="dark">Dark Mode</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="language">Language:</label>
+              <select id="language" class="input-control">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <button class="btn-pink" onclick="savePreferences()">Save Preferences</button>
+              <button class="btn-soft" onclick="applyPreferences()">Apply</button>
+            </div>
+            <div class="results" id="message">Preferences ready</div>
+          </div>
+        </article>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <div class="container">
-      &copy; 2026 M.J.M - Laboratory Tasks
-    </div>
-  </footer>
+        <article class="feature-card" id="storage">
+          <div class="feature-card-header">
+            <div class="feature-title"><i>▣</i><span>Local Storage</span></div>
+            <span class="feature-tag">Storage</span>
+          </div>
+          <div class="feature-card-body">
+            <div class="form-group">
+              <label for="username">Name:</label>
+              <input type="text" id="username" class="input-control" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+              <button class="btn-pink" onclick="saveData()">Save</button>
+              <button class="btn-soft" onclick="loadData()">Load</button>
+            </div>
+            <div class="results" id="display">No data saved yet.</div>
+          </div>
+        </article>
 
-  <!-- Bootstrap JS -->
+        <article class="feature-card" id="weather">
+          <div class="feature-card-header">
+            <div class="feature-title"><i>☀</i><span>Weather</span></div>
+            <span class="feature-tag">OpenWeather</span>
+          </div>
+          <div class="feature-card-body">
+            <div class="form-group">
+              <label for="city">Location:</label>
+              <input type="text" id="city" class="input-control" placeholder="Enter city name">
+              <button class="btn-pink" onclick="getWeather()">Search</button>
+            </div>
+            <div id="weatherResult" class="results"></div>
+          </div>
+        </article>
+
+        <article class="feature-card" id="maps">
+          <div class="feature-card-header">
+            <div class="feature-title"><i>⌕</i><span>Maps</span></div>
+            <span class="feature-tag">Google Maps</span>
+          </div>
+          <div class="feature-card-body">
+            <div class="form-group">
+              <label for="locationInput">Search:</label>
+              <input type="text" id="locationInput" class="input-control" placeholder="Enter city or address">
+              <button class="btn-pink" onclick="searchLocation()">Search</button>
+            </div>
+            <div id="map"></div>
+          </div>
+        </article>
+
+        <article class="feature-card wide" id="github">
+          <div class="feature-card-header">
+            <div class="feature-title"><i>☏</i><span>GitHub Profile</span></div>
+            <span class="feature-tag">GitHub API</span>
+          </div>
+          <div class="feature-card-body">
+            <div class="form-group">
+              <label for="githubUsername">Username:</label>
+              <input type="text" id="githubUsername" class="input-control" placeholder="Enter GitHub username">
+              <button class="btn-pink" onclick="getUser()">Search Profile</button>
+            </div>
+            <div id="userResult" class="results"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="dash-footer">
+        <span>Data Flow: Local Storage • API • Dashboard</span>
+        <span id="languageDisplay">Language: English</span>
+      </section>
+    </main>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function saveData() {
+      const name = document.getElementById('username').value.trim();
+      if (!name) {
+        document.getElementById('display').innerText = 'Enter a name first.';
+        return;
+      }
+      localStorage.setItem('userName', name);
+      loadData();
+    }
+
+    function loadData() {
+      const name = localStorage.getItem('userName');
+      const display = document.getElementById('display');
+      display.innerText = name ? 'Welcome, ' + name : 'No data saved yet.';
+    }
+
+    function savePreferences() {
+      const theme = document.getElementById('theme').value;
+      const language = document.getElementById('language').value;
+      localStorage.setItem('theme', theme);
+      localStorage.setItem('language', language);
+      applyPreferences();
+
+      const message = document.getElementById('message');
+      message.innerText = 'Preferences saved successfully!';
+    }
+
+    function applyPreferences() {
+      const savedTheme = localStorage.getItem('theme');
+      const savedLanguage = localStorage.getItem('language');
+      const body = document.body;
+      const theme = document.getElementById('theme');
+      const language = document.getElementById('language');
+
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+      } else {
+        body.classList.remove('dark-mode');
+      }
+
+      theme.value = savedTheme || 'light';
+      language.value = savedLanguage || 'en';
+
+      const favMode = savedTheme === 'dark' ? 'Dark' : 'Light';
+      const lang = savedLanguage === 'es' ? 'Español' : 'English';
+      document.getElementById('themeStat').innerText = favMode;
+      document.getElementById('languageDisplay').innerText = 'Language: ' + lang;
+    }
+
+    function getWeather() {
+      const city = document.getElementById('city').value.trim();
+      const weatherResult = document.getElementById('weatherResult');
+      if (!city) {
+        weatherResult.innerText = 'Please enter a city.';
+        weatherResult.style.display = 'block';
+        return;
+      }
+
+      const apiKey = '164afcc6119353be325f3c4557aa1e4f';
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data.cod === 200) {
+            weatherResult.innerHTML = `
+              <div class="weather-content">
+                <div class="weather-place"><strong>${data.name}</strong></div>
+                <div class="weather-description">${data.weather[0].description}</div>
+                <div class="weather-temp">Temperature: ${data.main.temp}°C</div>
+                <div class="weather-extra">Humidity: ${data.main.humidity}% • Wind: ${data.wind.speed} m/s</div>
+                <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png" alt="${data.weather[0].description}">
+              </div>
+            `;
+            weatherResult.style.display = 'block';
+          } else {
+            weatherResult.innerText = 'City not found.';
+            weatherResult.style.display = 'block';
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching weather data:', error);
+          weatherResult.innerText = 'Error fetching weather data.';
+          weatherResult.style.display = 'block';
+        });
+    }
+
+    let map;
+
+    async function initMap() {
+      if (!window.google || !google.maps) {
+        document.getElementById('map').innerHTML = 'Map not available';
+        return;
+      }
+
+      const { Map } = await google.maps.importLibrary('maps');
+      const { Place } = await google.maps.importLibrary('places');
+
+      map = new Map(document.getElementById('map'), {
+        zoom: 5,
+        center: { lat: 14.5995, lng: 120.9842 },
+        mapTypeControl: true,
+        styles: [
+          {
+            featureType: 'poi.business',
+            elementType: 'labels',
+            stylers: [{ visibility: 'off' }]
+          }
+        ]
+      });
+
+      window.Place = Place;
+    }
+
+    async function searchLocation() {
+      const location = document.getElementById('locationInput').value.trim();
+      const mapContainer = document.getElementById('map');
+
+      if (!location) {
+        mapContainer.innerText = 'Enter a location.';
+        return;
+      }
+
+      if (!window.google || !google.maps || !google.maps.importLibrary) {
+        mapContainer.innerText = 'Google Maps library not loaded.';
+        return;
+      }
+
+      try {
+        const { Place } = await google.maps.importLibrary('places');
+        const request = {
+          textQuery: location,
+          fields: ['displayName', 'location'],
+          maxResultCount: 1
+        };
+
+        const { places } = await Place.searchByText(request);
+
+        if (places && places.length > 0) {
+          const place = places[0];
+          map.setCenter(place.location);
+          map.setZoom(12);
+          if (place.displayName) {
+            mapContainer.title = place.displayName;
+          }
+        } else {
+          mapContainer.innerText = 'Location not found.';
+        }
+      } catch (error) {
+        console.error('Map error:', error);
+        mapContainer.innerText = 'Location could not be searched.';
+      }
+    }
+
+    function getUser() {
+      const username = document.getElementById('githubUsername').value.trim();
+      const userResult = document.getElementById('userResult');
+
+      if (!username) {
+        userResult.innerText = 'Please enter a GitHub username.';
+        userResult.style.display = 'block';
+        return;
+      }
+
+      const url = `https://api.github.com/users/${username}`;
+
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('User not found');
+          }
+          return response.json();
+        })
+        .then(data => {
+          userResult.innerHTML = `
+            <div class="github-profile">
+              <img src="${data.avatar_url}" width="80" height="80" alt="${data.login}" style="border-radius:50%;box-shadow:0 4px 14px rgba(185,49,105,0.25)">
+              <div class="github-text">
+                <h4 style="color: var(--pink-dark); margin: 8px 0;">${data.name || data.login}</h4>
+                <p><strong>Username:</strong> ${data.login}</p>
+                <p><strong>Public Repos:</strong> ${data.public_repos}</p>
+                <p><strong>Followers:</strong> ${data.followers}</p>
+                <p><strong>Company:</strong> ${data.company || 'Not listed'}</p>
+              </div>
+            </div>
+          `;
+          userResult.style.display = 'block';
+        })
+        .catch(error => {
+          console.error('Error fetching GitHub data:', error);
+          userResult.innerText = 'GitHub user not found or API error.';
+          userResult.style.display = 'block';
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadData();
+      applyPreferences();
+
+      const toggleTheme = document.getElementById('toggleTheme');
+      toggleTheme.addEventListener('click', function() {
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        applyPreferences();
+      });
+    });
+  </script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1GAlyvoF0g2ktj-S9-m0-MZ_Ut7whm3E&callback=initMap"></script>
 </body>
 </html>
