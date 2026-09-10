@@ -32,8 +32,8 @@ This portfolio also serves as a collection of my progress and learning throughou
 🎨 Personalization Theme
 
 Project Brand Name: WebSys Portfolio
-Color Scheme Used: Soft Blue, White, and Dark Gray
-Typography Used: Arial / Sans-serif
+Color Scheme Used: Soft Blue, White, and Pink
+Typography Used: Times New Roman / Arial
 Design Goal: To create a simple, clean, responsive, and user-friendly portfolio that presents my laboratory activities, projects, and progress in web development.
 
 📂 Weekly Summary
